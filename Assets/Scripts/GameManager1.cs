@@ -22,6 +22,29 @@ public class GameManager1 : MonoBehaviour
             playerMovement.leftAndRightMultiplier -= 0.01f;
         }
     }
+    public void ActivatePowerUp(string name)
+    {
+        if (name == "PowerUp_SpeedUp")
+        {
+            StartCoroutine("SpeedUpEnd");
+        }
+        if (name == "PowerUp_speeddown")
+        {
+            StartCoroutine("SpeedDownEnd");
+        }
+    }
+    IEnumerator SpeedUpEnd()
+    {
+        playerMovement.speed += 5;
+        yield return new WaitForSeconds(4f);
+        playerMovement.speed -= 5;
+    }
+    IEnumerator SpeedDownEnd()
+    {
+        playerMovement.speed -= 5;
+        yield return new WaitForSeconds(4f);
+        playerMovement.speed += 5;
+    }
     private void Awake()
     {
         inst = this;
