@@ -5,11 +5,11 @@ public class PlayerMovementController : MonoBehaviour
 {
     public float speed = 10;
     float horizontalInput;
-    [SerializeField] float leftAndRightMultiplier = 2;
+    public float leftAndRightMultiplier = 2;
 
     [SerializeField] Rigidbody rb;
 
-    public float speedIncreasePerPoint = 0.1f;
+    public float speedIncreasePerPoint = 0.01f;
     bool isAlive = true;
 
     [SerializeField] float jumpForce = 400f;
@@ -52,11 +52,16 @@ public class PlayerMovementController : MonoBehaviour
 
     void Jump()
     {
+        
         //Check wether we are currently grounded
         float height = GetComponent<Collider>().bounds.size.y;
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height/2) + 0.01f, groundMask);
         
         //If we are on the ground, jump 
+        if (rb.transform.position.y >= 2)
+        {
+            return;
+        }
         rb.AddForce(Vector3.up * jumpForce);
     }
 }
