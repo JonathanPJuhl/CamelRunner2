@@ -22,6 +22,8 @@ public class GroundSpawner : MonoBehaviour
         {
             temp.GetComponent<GroundTile>().SpawnObstacle();
             temp.GetComponent<GroundTile>().SpawnCoins();
+            temp.GetComponent<GroundTile>().SpawnPowerUps();
+
         }
     }
 

@@ -6,6 +6,8 @@ public class GroundTile : MonoBehaviour
 
     GroundSpawner groundSpawn;
     [SerializeField] GameObject coinPrefab;
+    [SerializeField] GameObject speedUpPowerUp;
+    [SerializeField] GameObject speedDownPowerUp;
     [SerializeField] GameObject obstaclePrefab;
     [SerializeField] GameObject obstacleHighPrefab;
     [SerializeField] float obstacleHighChance = 0.2f;
@@ -55,6 +57,24 @@ public class GroundTile : MonoBehaviour
         {
             GameObject temp = Instantiate(coinPrefab, transform);
             temp.transform.position = CoinSpawnPoint(GetComponent<Collider>());
+        }
+    }
+    public void SpawnPowerUps()
+    {
+        GameObject temp;
+        int whichPowerUpToSpawn = Random.Range(0, 5);
+        if (whichPowerUpToSpawn == 1)
+        {
+            temp = Instantiate(speedUpPowerUp, transform);
+            temp.transform.position = CoinSpawnPoint(GetComponent<Collider>());
+        }
+         else if(whichPowerUpToSpawn == 2)
+        {
+            temp = Instantiate(speedDownPowerUp, transform);
+            temp.transform.position = CoinSpawnPoint(GetComponent<Collider>());
+        } else
+        {
+            return;
         }
     }
     Vector3 CoinSpawnPoint(Collider collider)

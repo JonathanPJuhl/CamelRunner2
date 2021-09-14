@@ -159,6 +159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 378129295930881843, guid: 977c3c4ac3e565f49ab7409573b068cb, type: 3}
+  speedUpPowerUp: {fileID: 1424663457364596840, guid: 7a454da90304649488161ce1bdd6060a, type: 3}
+  speedDownPowerUp: {fileID: 4486772343086077343, guid: e7db9de0ae4f1724b83ae8392c2a253e, type: 3}
   obstaclePrefab: {fileID: 1723922736192140073, guid: f55b6f0470c980649b18d499c4a1d8ee, type: 3}
   obstacleHighPrefab: {fileID: 1723922736192140073, guid: 98dfd8800926a3d41a9e5719e7128a7a, type: 3}
   obstacleHighChance: 0.2
