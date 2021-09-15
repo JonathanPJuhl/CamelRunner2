@@ -17,9 +17,9 @@ public class GameManager1 : MonoBehaviour
         scoreText.text = "Score: " + score;
         // Increase the player's speed
         playerMovement.speed += playerMovement.speedIncreasePerPoint;
-        if (playerMovement.speed > 20)
+        if (playerMovement.speed > 20f)
         {
-            playerMovement.leftAndRightMultiplier -= 0.01f;
+            playerMovement.leftAndRightMultiplier *= 0.95f;
         }
     }
     public void ActivatePowerUp(string name)
