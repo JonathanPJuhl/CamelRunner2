@@ -7,8 +7,10 @@ public class GameManager1 : MonoBehaviour
 {
 
     int score;
+    int meter;
     public static GameManager1 inst;
     [SerializeField] Text scoreText;
+    [SerializeField] Text meterText;
     [SerializeField] PlayerMovementController playerMovement;
 
     public void IncrementScore()
@@ -16,10 +18,14 @@ public class GameManager1 : MonoBehaviour
         score++;
         scoreText.text = "Score: " + score;
         // Increase the player's speed
-        playerMovement.speed += playerMovement.speedIncreasePerPoint;
-        if (playerMovement.speed > 20)
+        if(score % 20 == 0)
         {
-            playerMovement.leftAndRightMultiplier -= 0.01f;
+            playerMovement.speed += 5f;
+        }
+        
+        if (playerMovement.speed > 20f)
+        {
+            playerMovement.leftAndRightMultiplier *= 0.95f;
         }
     }
     public void ActivatePowerUp(string name)
@@ -35,15 +41,15 @@ public class GameManager1 : MonoBehaviour
     }
     IEnumerator SpeedUpEnd()
     {
-        playerMovement.speed += 5;
+        playerMovement.speed *= 1.5f;
         yield return new WaitForSeconds(4f);
-        playerMovement.speed -= 5;
+        playerMovement.speed *= 2/3f;
     }
     IEnumerator SpeedDownEnd()
     {
-        playerMovement.speed -= 5;
+        playerMovement.speed *= 0.5f;
         yield return new WaitForSeconds(4f);
-        playerMovement.speed += 5;
+        playerMovement.speed *= 2f;
     }
     private void Awake()
     {
@@ -52,12 +58,17 @@ public class GameManager1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        meter = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        meter = ((int)playerMovement.rb.transform.position.z);
+        meterText.text =   meter - 10 + " Meters";
+        if(meter>1000)
+        {
+            meterText.text = "YOU ARE A FAG";
+        }
     }
 }

@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4233deb952c8e1a4394584be39cd2b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 378129295930881843, guid: 977c3c4ac3e565f49ab7409573b068cb, type: 3}
+  cigarettePrefab: {fileID: 5728442290022953579, guid: f13621987afcc7d4ab69e17aa0a46568, type: 3}
   speedUpPowerUp: {fileID: 1424663457364596840, guid: 7a454da90304649488161ce1bdd6060a, type: 3}
   speedDownPowerUp: {fileID: 4486772343086077343, guid: e7db9de0ae4f1724b83ae8392c2a253e, type: 3}
   obstaclePrefab: {fileID: 1723922736192140073, guid: f55b6f0470c980649b18d499c4a1d8ee, type: 3}
