@@ -7,9 +7,9 @@ public class PlayerMovementController : MonoBehaviour
     float horizontalInput;
     public float leftAndRightMultiplier = 2;
 
-    [SerializeField] Rigidbody rb;
+    public Rigidbody rb;
 
-    public float speedIncreasePerPoint = 0.01f;
+    public float speedIncreasePerPoint = 500f;
     bool isAlive = true;
 
     [SerializeField] float jumpForce = 400f;
@@ -58,7 +58,7 @@ public class PlayerMovementController : MonoBehaviour
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height/2) + 0.01f, groundMask);
         
         //If we are on the ground, jump 
-        if (rb.transform.position.y >= 2)
+        if (rb.transform.position.y >= 1.5)
         {
             return;
         }
