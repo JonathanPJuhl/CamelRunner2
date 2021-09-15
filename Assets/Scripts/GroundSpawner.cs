@@ -21,7 +21,7 @@ public class GroundSpawner : MonoBehaviour
         if (spawnItems)
         {
             temp.GetComponent<GroundTile>().SpawnObstacle();
-            temp.GetComponent<GroundTile>().SpawnCoins();
+            temp.GetComponent<GroundTile>().SpawnCigarettes();
             temp.GetComponent<GroundTile>().SpawnPowerUps();
 
         }

@@ -5,7 +5,7 @@ public class GroundTile : MonoBehaviour
 
 
     GroundSpawner groundSpawn;
-    [SerializeField] GameObject coinPrefab;
+    [SerializeField] GameObject cigarettePrefab;
     [SerializeField] GameObject speedUpPowerUp;
     [SerializeField] GameObject speedDownPowerUp;
     [SerializeField] GameObject obstaclePrefab;
@@ -22,8 +22,12 @@ public class GroundTile : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        groundSpawn.SpawnNextTile(true);
-        Destroy(gameObject, 2);
+        if (other.gameObject.name == "Player")
+        {
+            groundSpawn.SpawnNextTile(true);
+            Destroy(gameObject, 2);
+        }
+        
     }
 
     // Update is called once per frame
@@ -50,13 +54,13 @@ public class GroundTile : MonoBehaviour
     }
 
 
-    public void SpawnCoins()
+    public void SpawnCigarettes()
     {
-        int amountOfCoins = 3;
-        for (int i = 0; i < amountOfCoins; i++)
+        int amountOfCigarettes = 3;
+        for (int i = 0; i < amountOfCigarettes; i++)
         {
-            GameObject temp = Instantiate(coinPrefab, transform);
-            temp.transform.position = CoinSpawnPoint(GetComponent<Collider>());
+            GameObject temp = Instantiate(cigarettePrefab, transform);
+            temp.transform.position = SpawnPoint(GetComponent<Collider>());
         }
     }
     public void SpawnPowerUps()
@@ -66,18 +70,18 @@ public class GroundTile : MonoBehaviour
         if (whichPowerUpToSpawn == 1)
         {
             temp = Instantiate(speedUpPowerUp, transform);
-            temp.transform.position = CoinSpawnPoint(GetComponent<Collider>());
+            temp.transform.position = SpawnPoint(GetComponent<Collider>());
         }
          else if(whichPowerUpToSpawn == 2)
         {
             temp = Instantiate(speedDownPowerUp, transform);
-            temp.transform.position = CoinSpawnPoint(GetComponent<Collider>());
+            temp.transform.position = SpawnPoint(GetComponent<Collider>());
         } else
         {
             return;
         }
     }
-    Vector3 CoinSpawnPoint(Collider collider)
+    Vector3 SpawnPoint(Collider collider)
     {
         Vector3 point = new Vector3(
             Random.Range(collider.bounds.min.x, collider.bounds.max.x),
@@ -86,7 +90,7 @@ public class GroundTile : MonoBehaviour
             );
         if (point != collider.ClosestPoint(point))
         {
-            point = CoinSpawnPoint(collider);
+            point = SpawnPoint(collider);
         }
         point.y = 1;
         return point;
