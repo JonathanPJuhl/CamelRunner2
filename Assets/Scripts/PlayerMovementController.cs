@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovementController : MonoBehaviour
 {
@@ -9,12 +10,22 @@ public class PlayerMovementController : MonoBehaviour
 
     public Rigidbody rb;
 
-    public float speedIncreasePerPoint = 500f;
+    // public float speedIncreasePerPoint = 500f;
     bool isAlive = true;
+    bool hide = false;
 
     [SerializeField] float jumpForce = 400f;
     [SerializeField] LayerMask groundMask;
- 
+
+    [SerializeField] GameObject gameOver;
+    [SerializeField] GameObject restartButton;
+
+    private void Start()
+    {
+        gameOver.SetActive(hide);
+        restartButton.SetActive(hide);
+    }
+
     private void FixedUpdate()
     {
         if (!isAlive) return;
@@ -25,6 +36,7 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
+        if (!isAlive) return;
         horizontalInput = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -40,12 +52,14 @@ public class PlayerMovementController : MonoBehaviour
 
     public void Die()
     {
+        gameOver.SetActive(!hide);
+        restartButton.SetActive(!hide);
         isAlive = false;
-        Invoke("Restart", 2);
+        //Invoke("Restart", 2);
         
     }
     
-    void Restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

@@ -18,7 +18,7 @@ public class GameManager1 : MonoBehaviour
         score++;
         scoreText.text = "Score: " + score;
         // Increase the player's speed
-        if(score % 10 == 0)
+        if(score % 20 == 0)
         {
             playerMovement.speed += 5f;
         }
@@ -41,15 +41,15 @@ public class GameManager1 : MonoBehaviour
     }
     IEnumerator SpeedUpEnd()
     {
-        playerMovement.speed += 5;
+        playerMovement.speed *= 1.5f;
         yield return new WaitForSeconds(4f);
-        playerMovement.speed -= 5;
+        playerMovement.speed *= 2/3f;
     }
     IEnumerator SpeedDownEnd()
     {
-        playerMovement.speed -= 5;
+        playerMovement.speed *= 0.5f;
         yield return new WaitForSeconds(4f);
-        playerMovement.speed += 5;
+        playerMovement.speed *= 2f;
     }
     private void Awake()
     {
